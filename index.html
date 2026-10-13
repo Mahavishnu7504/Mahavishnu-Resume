@@ -166,6 +166,31 @@
   }
   .section-title span{ color: var(--green); }
 
+  section{ scroll-margin-top: 48px; }
+
+  /* ============ ABOUT ============ */
+  .about-wrap{ display:grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items:start; }
+  @media (max-width: 850px){ .about-wrap{ grid-template-columns: 1fr; } }
+  .about-panel{
+    background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px;
+    overflow:hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .about-panel-head{
+    display:flex; align-items:center; gap:8px; padding: 8px 14px;
+    background: var(--bg-panel-2); border-bottom: 1px solid var(--border);
+    font-size: 11px; color: var(--text-dim); letter-spacing: 0.05em;
+  }
+  .about-panel-head i{ width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .about-panel-head .ap-label{ margin-left: 8px; }
+  .about-panel-body{ padding: 22px 24px; }
+  .about-panel-body .cmd{ color: var(--green); font-size: 13px; margin-bottom: 14px; }
+  .about-panel-body .cmd span{ color: var(--cyan); }
+  .about-summary p{ font-size: 14px; color: var(--text-dim); margin-bottom: 14px; line-height: 1.75; }
+  .about-summary p:last-child{ margin-bottom: 0; }
+  .about-summary strong{ color: var(--text); font-weight: 600; }
+  .about-summary .hl{ color: var(--green); }
+  .about-edu .mini-list li{ padding-bottom: 2px; }
+
   /* ============ HERO ============ */
   #hero{
     min-height: 92vh; display:flex; flex-direction:column; justify-content:center;
@@ -225,7 +250,7 @@
 
   .hero-sub{
     font-family: var(--wide); font-size: clamp(14px, 1.6vw, 19px); color: var(--text-dim);
-    max-width: 640px; margin-top: 22px; font-weight: 500;
+    max-width: 700px; margin-top: 22px; font-weight: 500;
   }
 
   .terminal{
@@ -279,7 +304,7 @@
     padding: 20px; transition: border-color 0.2s, transform 0.2s;
   }
   .skill-card:hover{ border-color: var(--green-dim); transform: translateY(-3px); }
-  .skill-card .sk-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 12px; }
+  .skill-card .sk-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom: 12px; gap: 8px; }
   .skill-card .sk-idx{ font-size: 11px; color: var(--text-dim); }
   .skill-card h3{
     font-family: var(--wide); font-size: 14px; letter-spacing: 0.06em; color: var(--amber);
@@ -342,12 +367,29 @@
   }
   .project-card:hover{ border-color: var(--green-dim); transform: translateY(-4px); }
   .project-card:hover::after{ opacity:1; }
+
+  /* Featured (newest) projects */
+  .project-card.featured{
+    border-color: var(--green-dim);
+    box-shadow: 0 0 0 1px rgba(57,255,136,0.08), 0 0 34px rgba(57,255,136,0.09);
+  }
+  .project-card.featured::after{ opacity:1; }
+  .proj-badge{
+    display:inline-block; font-family: var(--wide); font-size: 10.5px; letter-spacing: 0.2em;
+    color: #04140a; background: var(--green); padding: 2px 9px; border-radius: 3px;
+    margin-bottom: 12px; font-weight: 700;
+  }
+  .proj-badge.live{ background: var(--amber); }
+
   .proj-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 8px; gap: 10px;}
   .proj-title{ font-family: var(--wide); font-size: 18px; color: var(--text); font-weight:700; }
   .proj-link{ font-size: 11px; color: var(--cyan); border:1px solid rgba(77,250,255,0.3); padding:4px 9px; border-radius: 20px; white-space:nowrap; }
   .proj-link:hover{ background: var(--cyan); color:#04140a; }
   .proj-date{ font-size: 11px; color: var(--text-dim); margin-bottom: 14px; letter-spacing:0.03em; }
   .proj-desc{ font-size: 13.5px; color: var(--text-dim); margin-bottom: 16px; }
+  .proj-bullets{ list-style:none; display:flex; flex-direction:column; gap: 8px; margin-bottom: 16px; }
+  .proj-bullets li{ font-size: 13.5px; color: var(--text-dim); padding-left: 18px; position:relative; }
+  .proj-bullets li::before{ content:'>'; position:absolute; left:0; color: var(--cyan); }
   .proj-tools{ display:flex; flex-wrap:wrap; gap:7px; }
 
   /* ============ CONTACT ============ */
@@ -415,6 +457,7 @@
   <button id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">MENU</button>
   <div class="nav-links" id="nav-links">
     <a href="#hero">home</a>
+    <a href="#about">about</a>
     <a href="#skills">skills</a>
     <a href="#experience">exp</a>
     <a href="#projects">projects</a>
@@ -425,11 +468,11 @@
 
 <!-- ============ HERO ============ -->
 <section id="hero">
-  <div class="hero-kicker"><span class="pulse"></span> SYSTEM ONLINE — FULL-STACK / AI ENGINEER</div>
+  <div class="hero-kicker"><span class="pulse"></span> SYSTEM ONLINE — AI SOFTWARE ENGINEER</div>
   <div class="glitch-wrap">
     <h1 class="glitch" data-text="MAHA VISHNU A">MAHA VISHNU <span>A</span></h1>
   </div>
-  <p class="hero-sub">Building production-grade AI systems — real-time computer vision pipelines, WebSocket monitoring platforms, and automated reporting engines. Python · FastAPI · Node.js · React.js.</p>
+  <p class="hero-sub">I design, build, and maintain production AI systems end to end — from real-time computer vision pipelines to the backend services, dashboards, and reporting layers around them — turning raw model outputs into reliable, automated workflows. Now expanding into real-time voice agents and autonomous LLM coding agents.</p>
 
   <div class="terminal">
     <div class="terminal-head">
@@ -451,16 +494,63 @@
   <div class="scroll-hint"><span class="chevron">▾</span> scroll to explore</div>
 </section>
 
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="section-tag">module_02</div>
+  <h2 class="section-title">About<span>_</span>Me</h2>
+
+  <div class="about-wrap">
+    <div class="about-panel">
+      <div class="about-panel-head">
+        <i style="background:var(--red)"></i><i style="background:var(--amber)"></i><i style="background:var(--green)"></i>
+        <span class="ap-label">summary.md</span>
+      </div>
+      <div class="about-panel-body">
+        <div class="cmd">guest@portfolio:<span>~</span>$ cat summary.md</div>
+        <div class="about-summary">
+          <p>I'm an <strong>AI Software Engineer</strong> who designs, builds, and maintains <strong>production AI systems</strong> end to end — from real-time computer vision pipelines to the backend services, dashboards, and reporting layers that surround them.</p>
+          <p>My strength is turning raw model outputs into <span class="hl">reliable, automated workflows</span>: live multi-camera monitoring over WebSockets, object detection and tracking with OpenCV and YOLO, and audit-ready reporting that replaces manual, multi-step processes.</p>
+          <p>Beyond computer vision, I'm building in <strong>real-time voice-agent applications</strong> and <strong>autonomous LLM-based coding agents</strong> — pairing solid software engineering with the fast-moving world of generative AI.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-panel about-edu">
+      <div class="about-panel-head">
+        <i style="background:var(--red)"></i><i style="background:var(--amber)"></i><i style="background:var(--green)"></i>
+        <span class="ap-label">education.log</span>
+      </div>
+      <div class="about-panel-body">
+        <div class="mini-title">// education</div>
+        <ul class="mini-list">
+          <li>
+            <span class="ml-title">M.Tech Integrated Software Engineering — Vellore Institute of Technology, Amaravati</span>
+            <span class="ml-date">Sept 2021 — Present · GPA 8.06/10</span>
+          </li>
+          <li>
+            <span class="ml-title">Higher Secondary Education — Senthil Public School, Salem</span>
+            <span class="ml-date">2020 — 2021 · 83%</span>
+          </li>
+          <li>
+            <span class="ml-title">Secondary Education — Kamalam International School, Dharmapuri</span>
+            <span class="ml-date">2018 — 2019 · 66%</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ SKILLS ============ -->
 <section id="skills">
-  <div class="section-tag">module_02</div>
+  <div class="section-tag">module_03</div>
   <h2 class="section-title">Tech<span>_</span>Stack</h2>
   <div class="skills-grid" id="skills-grid"></div>
 </section>
 
 <!-- ============ EXPERIENCE ============ -->
 <section id="experience">
-  <div class="section-tag">module_03</div>
+  <div class="section-tag">module_04</div>
   <h2 class="section-title">Execution<span>_</span>Log</h2>
 
   <div class="timeline">
@@ -472,34 +562,14 @@
       </div>
       <div class="tl-loc">Remote</div>
       <ul class="tl-list">
-        <li>Engineered a real-time multi-object tracking pipeline using the <strong>Hungarian assignment algorithm</strong> with an IoU-blended cost matrix, delivering an estimated <strong>90% tracking accuracy</strong> for PPE-compliance and hazard monitoring across concurrent camera feeds.</li>
-        <li>Architected a multi-camera live monitoring system over <strong>WebSockets</strong>, integrating OpenCV + YOLO for four real-time detection capabilities — PPE compliance, hazard alerting, object detection, and infrastructure crack/defect detection.</li>
-        <li>Automated a severity-tiered inspection grading engine and PDF reporting pipeline, condensing a multi-step manual workflow into a single automated run.</li>
-        <li>Diagnosed and resolved 3 critical production issues — a WebSocket connection bug, an async event-loop memory leak, and a platform-specific OpenCV crash — improving uptime and reliability.</li>
-        <li>Integrated <strong>FastAPI</strong> REST endpoints across three data domains — live detections, alert history, compliance reports — powering a React-based monitoring dashboard.</li>
-        <li>Unified the detection pipeline, WebSocket layer, and dashboard into one production system across AI, backend, and frontend disciplines via structured code reviews.</li>
+        <li>Architected a multi-camera live monitoring system over <strong>WebSockets</strong>, integrating <strong>OpenCV</strong> and <strong>YOLO</strong> to deliver four real-time detection capabilities — PPE compliance, hazard alerting, object detection, and infrastructure crack/defect detection — across simultaneous camera feeds, backed by a multi-object tracking pipeline (<strong>Hungarian assignment</strong> with an IoU-blended cost matrix) achieving an estimated <strong>90% tracking accuracy</strong>.</li>
+        <li>Built <strong>FastAPI</strong> REST endpoints for live detection results, alert history, and compliance reports to power a React monitoring dashboard, and automated a severity-tiered inspection grading engine and PDF reporting pipeline that converts raw detections into audit-ready reports, reducing a multi-step manual workflow to a single automated run.</li>
+        <li>Unified the detection, WebSocket, and dashboard layers into one production system through structured code reviews, and diagnosed and resolved <strong>3 critical production issues</strong> — a WebSocket connection bug, an async event-loop memory leak, and a platform-specific OpenCV crash — improving uptime and reliability.</li>
       </ul>
     </div>
   </div>
 
-  <div class="edu-cert-wrap">
-    <div>
-      <div class="mini-title">// education</div>
-      <ul class="mini-list">
-        <li>
-          <span class="ml-title">M.Tech Integrated Software Engineering — Vellore Institute of Technology, Amaravati</span>
-          <span class="ml-date">Sept 2021 — Present · GPA 8.06/10</span>
-        </li>
-        <li>
-          <span class="ml-title">Higher Secondary Education — Senthil Public School, Salem</span>
-          <span class="ml-date">2020 — 2021 · 83%</span>
-        </li>
-        <li>
-          <span class="ml-title">Secondary Education — Kamalam International School, Dharmapuri</span>
-          <span class="ml-date">2018 — 2019 · 66%</span>
-        </li>
-      </ul>
-    </div>
+  <div class="edu-cert-wrap" style="grid-template-columns:1fr;">
     <div>
       <div class="mini-title">// certifications</div>
       <ul class="mini-list">
@@ -526,10 +596,46 @@
 
 <!-- ============ PROJECTS ============ -->
 <section id="projects">
-  <div class="section-tag">module_04</div>
+  <div class="section-tag">module_05</div>
   <h2 class="section-title">Deployed<span>_</span>Builds</h2>
   <div class="projects-grid">
 
+    <!-- NEW: AutoDev Agent -->
+    <div class="project-card featured">
+      <span class="proj-badge">NEW</span>
+      <div class="proj-head">
+        <span class="proj-title">AutoDev Agent – Autonomous AI Coding Assistant</span>
+        <a class="proj-link" href="https://github.com/Mahavishnu7504" target="_blank" rel="noopener">git → repo</a>
+      </div>
+      <div class="proj-date">SEPT 2026 · AI Agent / Developer Tooling</div>
+      <ul class="proj-bullets">
+        <li>Developed an AI agent that translates natural-language tasks into executable code and iteratively repairs errors using execution feedback.</li>
+        <li>Engineered an execution and validation pipeline with automated test generation, task orchestration, and task-history tracking.</li>
+        <li>Implemented benchmarking to evaluate generated-code quality and identify regressions across runs.</li>
+      </ul>
+      <div class="proj-tools">
+        <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Groq LLM</span><span class="tag">Automated Testing</span>
+      </div>
+    </div>
+
+    <!-- NEW: Android Voice Agent -->
+    <div class="project-card featured">
+      <span class="proj-badge">NEW</span>
+      <div class="proj-head">
+        <span class="proj-title">Android Voice Agent – Real-Time AI Assistant</span>
+        <a class="proj-link" href="https://github.com/Mahavishnu7504" target="_blank" rel="noopener">git → repo</a>
+      </div>
+      <div class="proj-date">SEPT 2026 · Real-Time Voice / Mobile</div>
+      <ul class="proj-bullets">
+        <li>Integrated microphone audio streaming with a backend AI agent using LiveKit and WebRTC for real-time voice interactions.</li>
+        <li>Implemented an Android interface and session-based communication to support conversational AI responses.</li>
+      </ul>
+      <div class="proj-tools">
+        <span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">LiveKit</span><span class="tag">WebRTC</span>
+      </div>
+    </div>
+
+    <!-- EXISTING -->
     <div class="project-card">
       <div class="proj-head">
         <span class="proj-title">Hackathon Registration &amp; Management System</span>
@@ -559,7 +665,7 @@
 
 <!-- ============ CONTACT ============ -->
 <section id="contact">
-  <div class="section-tag">module_05</div>
+  <div class="section-tag">module_06</div>
   <h2 class="section-title">Open<span>_</span>Channel</h2>
 
   <div class="contact-wrap">
@@ -595,11 +701,12 @@
   /* ================= BIOS BOOT SEQUENCE ================= */
   var bootLines = [
     { t: "MV-BIOS (C) 2026 Maha Vishnu Systems", cls: "" },
-    { t: "CPU: Full-Stack Engineering Core  @ 3.8GHz  OK", cls: "boot-ok" },
+    { t: "CPU: AI Software Engineering Core  @ 3.8GHz  OK", cls: "boot-ok" },
     { t: "MEM TEST: 65536K OK", cls: "boot-ok" },
     { t: "Detecting primary stack.......... PYTHON / FASTAPI / NODE.JS / REACT", cls: "boot-tag" },
     { t: "Detecting vision module.......... OPENCV + YOLO  READY", cls: "boot-tag" },
-    { t: "Mounting databases............... MYSQL, POSTGRES, MONGO, REDIS, NEO4J", cls: "boot-tag" },
+    { t: "Detecting GenAI module........... LLMS / RAG / AI AGENTS  READY", cls: "boot-tag" },
+    { t: "Mounting databases............... POSTGRESQL, MYSQL, MONGODB, REDIS", cls: "boot-tag" },
     { t: "Checking WebSocket link........... [ CONNECTED ]", cls: "boot-ok" },
     { t: "Loading resume.pdf................ 100%", cls: "boot-ok" },
     { t: "WARNING: caffeine levels nominal, proceed with caution", cls: "boot-warn" },
@@ -668,10 +775,11 @@
   /* ================= HERO TYPING TERMINAL ================= */
   var typingTarget = document.getElementById('typing-line');
   var typingStrings = [
-    "> Full-Stack Software Engineer, AI Systems Specialist",
-    "> Building real-time computer vision + WebSocket pipelines",
+    "> AI Software Engineer — production AI systems",
+    "> Real-time computer vision + WebSocket pipelines",
+    "> LLM agents · RAG · Voice AI (LiveKit / WebRTC)",
     "> Python · FastAPI · Node.js · React.js · Docker",
-    "> Currently: AI Engineering Intern @ AIQuantalytics"
+    "> Currently building: AutoDev Agent + Android Voice Agent"
   ];
   var si = 0, ci = 0, deleting = false;
 
@@ -699,14 +807,15 @@
 
   /* ================= SKILLS GRID (data-driven) ================= */
   var skillData = [
-    { title: "Languages", items: ["Python", "Java", "JavaScript", "TypeScript"] },
-    { title: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS", "HTML", "Responsive Design"] },
-    { title: "Backend", items: ["Node.js", "FastAPI", "Express.js", "Hono.js", "REST API Design"] },
-    { title: "AI / Computer Vision", items: ["OpenCV", "YOLO", "Object Tracking", "Object Detection", "Hungarian Algorithm"] },
-    { title: "Databases", items: ["MySQL", "PostgreSQL", "MongoDB", "Redis", "Neo4j", "Schema Design"] },
-    { title: "Architecture", items: ["System Design", "WebSockets", "Real-Time Pipelines", "API Integration", "Automation"] },
-    { title: "Cloud & Deploy", items: ["Docker", "Cloudflare", "Netlify", "Production Deployment"] },
-    { title: "Tools", items: ["Git", "GitHub", "Figma", "Draw.io", "Power BI", "QuickSight"] }
+    { title: "AI/ML & Computer Vision", items: ["Machine Learning", "Deep Learning", "OpenCV", "YOLO", "Object Detection & Tracking"] },
+    { title: "Generative AI", items: ["LLMs (Groq)", "Prompt Engineering", "Embeddings", "Vector Search", "RAG", "AI Agents", "Tool Calling", "Structured Outputs"] },
+    { title: "AI Engineering", items: ["Model Inference", "AI APIs", "Real-Time AI Pipelines", "AI Evaluation"] },
+    { title: "Programming", items: ["Python", "Java", "JavaScript", "TypeScript", "Kotlin"] },
+    { title: "Backend & APIs", items: ["FastAPI", "Node.js", "Hono.js", "REST APIs", "WebSockets", "Asynchronous Programming"] },
+    { title: "Databases", items: ["PostgreSQL", "MySQL", "MongoDB", "Redis"] },
+    { title: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS"] },
+    { title: "Cloud & DevOps", items: ["Docker", "Cloudflare", "Netlify", "CI/CD"] },
+    { title: "Software Engineering", items: ["System Design", "Debugging", "Performance Optimization", "Testing", "Git"] }
   ];
   var grid = document.getElementById('skills-grid');
   skillData.forEach(function(group, idx){
@@ -741,10 +850,10 @@
       printLine("  clear      — clear the console", "resp");
     },
     about: function(){
-      printLine("Full-Stack Software Engineer specializing in production-grade AI systems: real-time CV pipelines, WebSocket monitoring platforms, and automated reporting engines.", "resp");
+      printLine("AI Software Engineer who designs, builds, and maintains production AI systems end to end: real-time CV pipelines, backend services, dashboards, and reporting layers, plus voice agents and autonomous LLM coding agents.", "resp");
     },
     skills: function(){
-      printLine("Python, FastAPI, Node.js, React.js, OpenCV, YOLO, MySQL, PostgreSQL, MongoDB, Docker.", "resp");
+      printLine("Python, FastAPI, Node.js, React.js, OpenCV, YOLO, LLMs (Groq), RAG, AI Agents, PostgreSQL, MySQL, MongoDB, Redis, Docker.", "resp");
     },
     contact: function(){
       printLine("email: mahavishnuarivoli@gmail.com", "resp");
